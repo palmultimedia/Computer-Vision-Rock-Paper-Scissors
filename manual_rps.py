@@ -1,7 +1,6 @@
 import random
 
 
-
 '''
 Play game without camera
 Create two module get_computer_choice and get_user_choice
