@@ -41,4 +41,15 @@ Run comparision and check who won.
 ## Milestone 4:
 Create game model with camera to pay rock-paper-scissor
 
+** Load tensorflow - keras model
+** define choices (Rock, Paper, Scissor and Nothing)
+** Set "0" points for computer and user
 
+Get random choice for computer as computer_choice
+Campture image from webcam as user_choice and get probability output 
+
+Set timer in the beginning to start the game. Use time.time() function to avoice video screen freez.
+
+Compare coumputer_choice vs user_choice and predict result - winner.
+
+At the end set an option to play again by pressing enter key.

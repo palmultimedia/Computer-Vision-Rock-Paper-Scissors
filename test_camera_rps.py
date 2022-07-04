@@ -5,6 +5,7 @@ from keras.models import load_model
 import time
 import numpy as np
 
+
 #from another import RPS_game
 
 class computervision:
@@ -31,6 +32,28 @@ class computervision:
 
     def countdown(self):
     #delay 3 sec. start before game start
+
+        print("begin timer")
+        measure1 = time.time()
+        measure2 = time.time()
+
+        count = 1
+
+        while count < 5:
+            if measure2 - measure1 >= 2:
+                a=4
+                print(a)
+                a=a-1
+                measure1 = measure2
+                measure2 = time.time()
+                count += 1
+            else:
+                measure2 = time.time()
+
+        print("Start")
+        return(None)
+
+    ''' 
         print("User input in webcam ")
         n = 3
         while n>0:
@@ -39,13 +62,17 @@ class computervision:
             n -=1
         print("Start")
         return(None)
-        '''
+    '''
+    '''
+
+        
         for sec in range(3,0,-1):
             time.sleep(1)
             print(sec)
-        '''
+    '''
 
     def get_output(self, prediction):
+
         # Open camera, return probability for (Rock, Paper, Scissor or Nothing)
         while True:
             self.countdown()         
@@ -77,14 +104,41 @@ class computervision:
         return computer_choice
 
     def get_user_choice(self):
-        user_input = self.get_output(self.choice)
+
+        user_input = CaptureVideo() #self.get_output(self.choice)
         user_choice = user_input.get_output()
         return(user_choice)
 
-    
+    def get_winner(self, computer_choice, user_choice):
+        if computer_choice == user_choice:
+            return("Draw")
+        elif computer_choice == "rock":
+            if user_choice=="scissors":
+                self.computer_points += 1
+                return("Computer Wins")
+            self.user_points += 1
+            return("User Wins")
+        elif computer_choice == "paper":
+            if user_choice == "rock":
+                self.computer_points += 1
+                return("Computer Wins")
+            self.user_points += 1
+            return("User Wins")
+        elif computer_choice =="scissors":
+            if user_choice == "paper":
+                self.computer_points +=1 
+                return("Computer Wins")
+            self.user_points += 1
+            return("User Wins")    
+
+
+
+
 
     def play(self, wins=3):
+      
         while True:
+                      
             computer_choice = self.get_computer_choice()
             user_choice = self.get_user_choice()
             winner = self.get_winner(computer_choice, user_choice)
@@ -108,7 +162,7 @@ class computervision:
             print("Something not right")
         
         print(f"Game Over. {winner} wins!")
-
+     
         return(None)
 
 rps_game = computervision()
